@@ -9,7 +9,6 @@ import io.swagger.annotations.ApiModelProperty;
 public class User {
 	@ApiModelProperty(name = "userId", dataType = "long", required = false)
 	@JsonProperty(value = "userId", required = false)
-	@NotNull(message = "First name is required")
 	private Long userId;
 	@ApiModelProperty(name = "firstName", dataType = "string", required = true)
 	@JsonProperty(value = "firstName", required = true)

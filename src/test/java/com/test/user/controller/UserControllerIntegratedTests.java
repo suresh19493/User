@@ -62,9 +62,11 @@ public class UserControllerIntegratedTests extends UserApplicationTests {
 
 	@Test
 	public void addUserTest() {
+		Mockito.when(userRepository.getUserByPhoneNumber(Mockito.anyString())).thenReturn(null);
 		Mockito.when(userRepository.save(Mockito.any(UserEntity.class))).thenReturn(userEntity);
 		ResponseEntity<UserResponse> responseEntity = this.restTemplate
 				.postForEntity("http://localhost:" + port + "/addUser", user, UserResponse.class);
+		System.out.println("responseEntity:"+responseEntity);
 		assertEquals(200, responseEntity.getStatusCodeValue());
 		assertEquals(ResponseStatus.SUCCESS, responseEntity.getBody().getStatus());
 		UserEntity user = objectMapper.convertValue(responseEntity.getBody().getPayload(), UserEntity.class);
